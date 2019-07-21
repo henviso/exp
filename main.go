@@ -1,4 +1,4 @@
-package main
+package exp
 
 import "fmt"
 
@@ -8,8 +8,4 @@ func Exp(a int, b int) int {
 		ans *= a
 	}
 	return ans
-}
-
-func main() {
-	fmt.Printf("6 ^ 7 = %d\n", Exp(6, 7))
 }
