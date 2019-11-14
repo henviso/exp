@@ -1,0 +1,17 @@
+version: "3.5"
+services:
+  exp:
+    image: kongdesk/web
+    networks:
+      - traefik-public
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.whoami.rule=Host(`exp.apisdesk.com`)"
+        - "traefik.http.routers.whoami.entrypoints=web-secure"
+        - "traefik.http.routers.whoami.tls.certresolver=apisdesk"
+        - "traefik.http.services.whoami.loadbalancer.server.port=8080"
+
+networks:
+  traefik-public:
+    external: true

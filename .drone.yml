@@ -1,5 +1,6 @@
 kind: pipeline
-name: default
+type: docker
+name: build
 steps:
 - name: test
   image: golang:1.12.5-stretch
@@ -38,3 +39,18 @@ steps:
     event:
     - push
     - tag
+---
+kind: pipline
+type: exec
+name: deploy
+
+steps:
+- name: deploy
+  environment:
+    DOCKER_USERNAME:
+      from_secret: docker_username
+    DOCKER_PASSWORD:
+      from_secret: docker_password
+  commands:
+  - "docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD"
+  - "docker stack deploy -c docker-compose.yml exp"
