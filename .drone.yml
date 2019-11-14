@@ -15,13 +15,8 @@ steps:
   - echo -n "latest,$${DRONE_COMMIT}" > .tags
   - "[ -z \"$$DRONE_TAG\" ] && echo \"No release tag found\" || echo -n \",$$DRONE_TAG\" >> .tags"
   when:
-    branch:
-      exclude:
-      - master
     event:
     - push
-    - pull request
-    - tag
 
 - name: publish
   image: plugins/docker
@@ -33,12 +28,8 @@ steps:
       from_secret: docker_password
     repo: kongdesk/web
   when:
-    branch:
-      exclude:
-      - master
     event:
     - push
-    - tag
 ---
 kind: pipline
 type: exec
