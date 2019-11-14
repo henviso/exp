@@ -1,6 +1,7 @@
 kind: pipeline
 type: docker
 name: build
+
 steps:
 - name: test
   image: golang:1.12.5-stretch
@@ -35,6 +36,10 @@ kind: pipline
 type: exec
 name: deploy
 
+platform:
+  os: linux
+  arch: amd64
+
 steps:
 - name: deploy
   environment:
@@ -45,3 +50,6 @@ steps:
   commands:
   - "docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD"
   - "docker stack deploy -c docker-compose.yml exp"
+
+depends_on:
+- build
