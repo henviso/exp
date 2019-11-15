@@ -32,7 +32,7 @@ steps:
     event:
     - push
 ---
-kind: pipline
+kind: pipeline
 type: exec
 name: deploy
 
