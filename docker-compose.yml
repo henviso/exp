@@ -7,10 +7,10 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.whoami.rule=Host(`exp.apisdesk.com`)"
-        - "traefik.http.routers.whoami.entrypoints=web-secure"
-        - "traefik.http.routers.whoami.tls.certresolver=apisdesk"
-        - "traefik.http.services.whoami.loadbalancer.server.port=8080"
+        - "traefik.http.routers.exp.rule=Host(`exp.apisdesk.com`)"
+        - "traefik.http.routers.exp.entrypoints=web-secure"
+        - "traefik.http.routers.exp.tls.certresolver=apisdesk"
+        - "traefik.http.services.exp.loadbalancer.server.port=8080"
 
 networks:
   traefik-public:
