@@ -45,7 +45,7 @@ steps:
       from_secret: docker_password
   commands:
   - "docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD"
-  - "docker stack deploy -c docker-compose.yml exp"
+  - "docker stack deploy -c docker-compose.yml exp --with-registry-auth"
 
 depends_on:
 - build
