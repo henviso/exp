@@ -20,8 +20,13 @@ func main() {
 	// Method:   GET
 	// Resource: http://localhost:8080
 	app.Handle("GET", "/", func(ctx iris.Context) {
-		ctx.HTML("<h1>Welcome</h1>")
+		ctx.HTML("<h1>Welcome to version 0</h1>")
 	})
+
+	app.Handle("GET", "/v1", func(ctx iris.Context) {
+		ctx.HTML("<h1>Welcome to version 1</h1>")
+	})
+
 
 	app.Handle("GET", "/sum/{a:int}/{b:int}", func(ctx iris.Context) {
 		a, errA := ctx.Params().GetInt("a") 

@@ -7,7 +7,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.exp.rule=Host(`exp.apisdesk.com`)"
+        - "traefik.http.routers.exp.rule=Host(`exp.apisdesk.com`) || (Host(`exp.apisdesk.com`) && Path(`/v1`))"
         - "traefik.http.routers.exp.entrypoints=web-secure"
         - "traefik.http.routers.exp.tls.certresolver=apisdesk"
         - "traefik.http.services.exp.loadbalancer.server.port=8080"
