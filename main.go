@@ -48,6 +48,22 @@ func main() {
 		ctx.HTML(html)		
 	})
 
+	app.Handle("GET", "/exp/{a:int}/{b:int}", func(ctx iris.Context) {
+		a, errA := ctx.Params().GetInt("a") 
+		b, errB := ctx.Params().GetInt("b")
+		if errA != nil {
+			panic(errA)
+		} else if errA != nil {
+			panic(errB)
+		}
+		ans := a
+		for i := 0; i<b; i++ {
+			ans *= a
+		}
+		html := fmt.Sprintf("<h1>%d + %d is %d</h1>", a, b, ans)
+		ctx.HTML(html)		
+	})
+
 	app.Handle("GET", "/version/", func(ctx iris.Context) {
 		vers := os.Getenv("GIT_TAG") 
 		html := fmt.Sprintf("<h1>Website version: %s</h1>", vers)
